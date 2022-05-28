@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react';     
 import {Link} from 'react-router-dom'
  
 const QuickDisplay = (props) => {
@@ -16,7 +16,7 @@ const QuickDisplay = (props) => {
                             </div>
                             <div className="tileComponent2">
                                 <div className="componentHeading">
-                                    <span>{item.mealtype}</span>
+                               <span>{item.mealtype}</span>
                                 </div>
                                 <div className="componentSubHeading">
                                     {item.content}
