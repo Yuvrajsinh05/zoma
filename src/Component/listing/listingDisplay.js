@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const ListingDisplay = (props) => {
 
     const renderData = ({listData}) => {
-        if(listData){
+        if(listData){   
             if(listData.length>0){
                 return listData.map((item) => {
                     return(
@@ -16,10 +16,10 @@ const ListingDisplay = (props) => {
                                 </div>
                                 <div className="col-md-7">
                                     <div className="hotel_name">
-                                        <Link to={`/details?restId=${item._id}`}>
+                                        <Link to={`/details?restId=${item.restaurant_id}`}>
                                             {item.restaurant_name}
                                         </Link>
-                                     <div className="city_name">{item.address}</div>
+                                        <div className="city_name">{item.address}</div>
                                         <div className="city_name">{item.rating_text}</div>
                                         <div className="city_name">Rs. {item.cost}</div>
                                         <div className="labelDiv">
