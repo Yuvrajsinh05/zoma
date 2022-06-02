@@ -47,7 +47,7 @@ class Search extends Component{
         fetch(`${restUrl}${restId}`,{method:'GET'})
         .then((res) => res.json())
         .then((data) => {
-            // console.log(">>>>",data)
+            // console.log(">>>>",restId)
            this.setState({restaurants:data})
         })
     }
