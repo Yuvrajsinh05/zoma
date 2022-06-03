@@ -66,7 +66,6 @@ class Header extends Component {
                     <h1>Zomato</h1>
                 </div>
                 <Link to="/" className="btn btn-info btnclass">Home</Link>
-
                 <div id="social">
                     {this.conditionalHeader()}
                 </div>
