@@ -13,7 +13,7 @@
 
 # list of type of mealType
 >> http://localhost:9705/mealType
->>
+
 // Page 2
 # List of reasturant on basis of meal
 >>http://localhost:9705/restaurants?meal_id=4

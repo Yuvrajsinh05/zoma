@@ -12,168 +12,170 @@ const cors = require('cors');
 // const token = "8fbf8tyyt87378";
 
 // middleware
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.use(cors())
 
 
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
     res.send("Welcome to Express")
 })
 
 // locations
 
-app.get('/location',(req,res)=>{
-    db.collection('locations').find().toArray((err,result)=>{
-        if(err) throw err;
+app.get('/location', (req, res) => {
+    db.collection('locations').find().toArray((err, result) => {
+        if (err) throw err;
         res.send(result)
     })
 })
 
 //restaurants
-app.get('/restaurants/',(req,res) => {
+app.get('/restaurants/', (req, res) => {
     // let id = req.params.id;
     // let id  = req.query.id
     // console.log(">>>id",id)
     let query = {};
     let stateId = Number(req.query.state_id)
     let mealId = Number(req.query.meal_id)
-    if(stateId){
-        query = {state_id:stateId}
-    }else if(mealId){
-        query = {'mealTypes.mealtype_id':mealId}
+    if (stateId) {
+        query = { state_id: stateId }
+    } else if (mealId) {
+        query = { 'mealTypes.mealtype_id': mealId }
     }
 
-    db.collection('reasturant').find(query).toArray((err,result) => {
-        if(err) throw err;
+    db.collection('reasturant').find(query).toArray((err, result) => {
+        if (err) throw err;
         res.send(result)
     })
 })
 
-app.get('/filters/:mealId',(req,res) => {
-    let sort = {cost:1}
+app.get('/filters/:mealId', (req, res) => {
+    let sort = { cost: 1 }
     let mealId = Number(req.params.mealId)
     let cuisineId = Number(req.query.cuisineId)
     let lcost = Number(req.query.lcost)
     let hcost = Number(req.query.hcost)
 
     let query = {}
-    if(req.query.sort){
-        sort={cost:Number(req.query.sort)}
+    if (req.query.sort) {
+        sort = { cost: Number(req.query.sort) }
     }
-    if(cuisineId){
+    if (cuisineId) {
         query = {
-            "mealTypes.mealtype_id":mealId,
-            "cuisines.cuisine_id":cuisineId
+            "mealTypes.mealtype_id": mealId,
+            "cuisines.cuisine_id": cuisineId
         }
-    }else if(lcost && hcost){
+    } else if (lcost && hcost) {
         query = {
-            "mealTypes.mealtype_id":mealId,
-            $and:[{cost:{$gt:lcost,$lt:hcost}}]
+            "mealTypes.mealtype_id": mealId,
+            $and: [{ cost: { $gt: lcost, $lt: hcost } }]
         }
     }
-    else{
+    else {
         query = {
-            "mealTypes.mealtype_id":mealId
+            "mealTypes.mealtype_id": mealId
         }
     }
 
-    db.collection('reasturant').find(query).sort(sort).toArray((err,result) => {
-        if(err) throw err;
+    db.collection('reasturant').find(query).sort(sort).toArray((err, result) => {
+        if (err) throw err;
         res.send(result)
     })
 })
 
 //restaurantDetails
-app.get('/details/:id',(req,res) => {
+app.get('/details/:id', (req, res) => {
     //let restId = Number(req.params.id);
     let restId = mongo.ObjectId(req.params.id)
-    db.collection('reasturant').find({_id:restId}).toArray((err,result) => {
-        if(err) throw err;
+    db.collection('reasturant').find({ _id: restId }).toArray((err, result) => {
+        if (err) throw err;
         res.send(result)
     })
 })
 
 
 //menu
-app.get('/menu',(req,res) => {
+app.get('/menu', (req, res) => {
     let query = {}
     let restId = Number(req.query.restId)
-    if(restId){
-        query = {restaurant_id:restId}
+    if (restId) {
+        query = { restaurant_id: restId }
     }
-    db.collection('menu').find(query).toArray((err,result) => {
-        if(err) throw err;
+    db.collection('menu').find(query).toArray((err, result) => {
+        if (err) throw err;
         res.send(result)
     })
 })
 
 // menu on basis of id
-app.post('/menuItem',(req,res) => {
+app.post('/menuItem', (req, res) => {
     console.log(req.body);
-    if(Array.isArray(req.body)){
-        db.collection('menu').find({menu_id:{$in:req.body}}).toArray((err,result) => {
-            if(err) throw err;
+    if (Array.isArray(req.body)) {
+        db.collection('menu').find({ menu_id: { $in: req.body } }).toArray((err, result) => {
+            if (err) throw err;
             res.send(result)
         })
-    }else{
+    } else {
         res.send('Invalid Input')
     }
 })
 
 // place Order
-app.post('/placeOrder',(req,res) => {
-    db.collection('orders').insert(req.body,(err,result) => {
-        if(err) throw err;
+app.post('/placeOrder', (req, res) => {
+    db.collection('orders').insert(req.body, (err, result) => {
+        if (err) throw err;
         res.send('Order Placed')
     })
 })
 
 
 // View Order
-app.get('/viewOrder',(req,res) => {
+app.get('/viewOrder', (req, res) => {
     let email = req.query.email;
     let query = {};
-    if(email){
-        query = {"email":email}
+    if (email) {
+        query = { "email": email }
     }
-    db.collection('orders').find(query).toArray((err,result) => {
-        if(err) throw err;
+    db.collection('orders').find(query).toArray((err, result) => {
+        if (err) throw err;
         res.send(result)
     })
 })
 
 // delete order
-app.delete('/deleteOrders',(req,res)=>{
-    db.collection('orders').remove({},(err,result) => {
+app.delete('/deleteOrders', (req, res) => {
+    db.collection('orders').remove({}, (err, result) => {
         res.send('order deleted')
     })
 })
 
 
 //update orders
-app.put('/updateOrder/:id',(req,res) => {
-    console.log(">>>id",req.params.id)
-    console.log(">>>id",req.body)
+app.put('/updateOrder/:id', (req, res) => {
+    console.log(">>>id", req.params.id)
+    console.log(">>>id", req.body)
     let oId = Number(req.params.id)
     db.collection('orders').updateOne(
-        {id:oId},
-        {$set:{
-            "status":req.body.status,
-            "bank_name":req.body.bank_name,
-            "date":req.body.date
-        }},(err,result) => {
-            if(err) throw err
+        { id: oId },
+        {
+            $set: {
+                "status": req.body.status,
+                "bank_name": req.body.bank_name,
+                "date": req.body.date
+            }
+        }, (err, result) => {
+            if (err) throw err
             res.send(`Status Updated to ${req.body.status}`)
         }
     )
 })
 
 // Connection with db
-MongoClient.connect(mongoUrl, (err,client) => {
-    if(err) console.log(`Error while connecting`);
+MongoClient.connect(mongoUrl, (err, client) => {
+    if (err) console.log(`Error while connecting`);
     db = client.db('zomato');
-    app.listen(port,() => {
+    app.listen(port, () => {
         console.log(`Server is running on port ${port}`)
     })
 })
