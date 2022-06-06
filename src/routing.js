@@ -20,7 +20,7 @@ const Routing = () => {
                 <Route path="/viewBooking" component={ViewOrder}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/register" component={Register}/>
-            <Footer/>
+            <Footer  month={"May"} year={2022}/>
         </BrowserRouter>
     )
 }
