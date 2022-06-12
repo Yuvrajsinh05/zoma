@@ -12,7 +12,8 @@
 >>https://zapiii.herokuapp.com/restaurants?state_id=4
 
 # list of type of mealType
->> http://localhost:9705/mealType
+>> http://localhost:9705/quicksearch
+>> https://zapiii.herokuapp.com/quicksearch
 
 // Page 2
 # List of reasturant on basis of meal

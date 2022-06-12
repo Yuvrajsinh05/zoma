@@ -29,6 +29,12 @@ app.get('/location', (req, res) => {
         res.send(result)
     })
 })
+app.get('/quicksearch', (req, res) => {
+    db.collection('Meal_type').find().toArray((err, result) => {
+        if (err) throw err;
+        res.send(result)
+    })
+})
 
 //restaurants
 app.get('/restaurants/', (req, res) => {

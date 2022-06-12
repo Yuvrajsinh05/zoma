@@ -2,8 +2,8 @@ import React,{Component} from 'react';
 import './placeOrder.css'
 import Header from '../../header'
 
-const url = "http://zomatoajulypi.herokuapp.com/menuItem";
-const purl = "http://localhost:9700/placeOrder";
+const url = "http://localhost:9705/menuItem";
+const purl = "http://localhost:9705/placeOrder";
 
 class PlaceOrder extends Component {
     constructor(props){
@@ -76,7 +76,7 @@ class PlaceOrder extends Component {
                         <h3>Your Order For {this.props.match.params.restName}</h3>
                     </div>
                     <div className="panel-body">
-                        <form action="https://developerpayment.herokuapp.com/paynow" method="POST">
+                        <form action="https://paytmgatewayy.herokuapp.com/paynow" method="POST">
                         <input type="hidden" name="cost" value={this.state.cost}/>
                         <input type="hidden" name="id" value={this.state.id}/>
                         <input type="hidden" name="hotel_name" value={this.state.hotel_name}/>

@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import './Search.css';
 import {withRouter} from 'react-router-dom'
 
-const url = "https://zapiii.herokuapp.com/location"
+const url = "https://zomatoajulypi.herokuapp.com/location"
 const restUrl = "https://zomatoajulypi.herokuapp.com/restaurant?stateId="
 class Search extends Component{
 
@@ -47,7 +47,7 @@ class Search extends Component{
         fetch(`${restUrl}${restId}`,{method:'GET'})
         .then((res) => res.json())
         .then((data) => {
-            // console.log(">>>>",restId)
+            // console.log(">>>>",data)
            this.setState({restaurants:data})
         })
     }
