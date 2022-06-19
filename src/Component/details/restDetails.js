@@ -5,8 +5,8 @@ import {Link} from 'react-router-dom';
 import MenuDisplay from './menuDisplay'
 import Header from '../../header'
 
-const url = "https://zomatoajulypi.herokuapp.com/details"
-const menuUrl = "https://zomatoajulypi.herokuapp.com/menu"
+const url = "https://restapiiiiii.herokuapp.com/details"
+const menuUrl = "https://restapiiiiii.herokuapp.com/menu?restId="
 
 class RestDetails extends Component {
 
@@ -84,7 +84,7 @@ class RestDetails extends Component {
         let restId = this.props.location.search.split('=')[1];
         let response = await axios.get(`${url}/${restId}`)
         console.log(">>>response.data[0].restaurant_id",response.data[0].restaurant_id)
-        let menuResponse = await axios.get(`${menuUrl}/${response.data[0].restaurant_id}`)
+        let menuResponse = await axios.get(`${menuUrl}${response.data[0].restaurant_id}`)
         this.setState({details:response.data[0],menuList:menuResponse.data})
     }
 }

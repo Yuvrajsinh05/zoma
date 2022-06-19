@@ -3,8 +3,8 @@ import axios from 'axios';
 import OrderDisplay from './orderDisplay';
 import Header from '../../header'
 
-const url = "http://localhost:9705/viewOrder"
-const updateUrl = "http://localhost:9705/updateOrder"
+const url = "https://restapiiiiii.herokuapp.com/viewOrder"
+const updateUrl = "https://restapiiiiii.herokuapp.com/updateOrder"
 
 class ViewOrder extends Component {
     constructor(){

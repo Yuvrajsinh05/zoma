@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Header from '../../header.js'
 
-const url = "http://localhost:5000/api/auth/login";
+const url = "https://zomalogin.herokuapp.com/api/auth/login";
 
 class Login extends Component {
     constructor(props){

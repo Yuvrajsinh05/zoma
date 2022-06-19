@@ -2,8 +2,8 @@ import React,{Component} from 'react';
 import './Search.css';
 import {withRouter} from 'react-router-dom'
 
-const url = "https://zomatoajulypi.herokuapp.com/location"
-const restUrl = "https://zomatoajulypi.herokuapp.com/restaurant?stateId="
+const url = "https://zapiii.herokuapp.com/location"
+const restUrl = "https://zapiii.herokuapp.com/restaurants?state_id="
 class Search extends Component{
 
     constructor(props){
@@ -29,7 +29,9 @@ class Search extends Component{
     renderRest = (data) => {
         if(data){
             return data.map((item) => {
+                // console.log("data", data)
                 return(
+            
                     <option key={item.restaurant_id} value={item.restaurant_id}>{item.restaurant_name} | {item.address}</option>
                 )
             })

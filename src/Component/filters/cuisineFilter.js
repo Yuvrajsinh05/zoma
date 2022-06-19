@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 
-const url = "https://zomatoajulypi.herokuapp.com/filter"
+const url = "https://restapiiiiii.herokuapp.com/filters"
 
 class CuisineFilter extends Component{
 
@@ -12,7 +12,7 @@ class CuisineFilter extends Component{
         if(cuisineId === ""){
             cuisineUrl = `${url}/${mealId}`
         }else{
-            cuisineUrl = `${url}/${mealId}?cuisine=${cuisineId}`
+            cuisineUrl = `${url}/${mealId}?cuisineId=${cuisineId}`
         }
         axios.get(cuisineUrl)
         .then((res) => {this.props.restPerCuisine(res.data)})
