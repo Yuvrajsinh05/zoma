@@ -71,7 +71,8 @@ app.get('/filters/:mealId', (req, res) => {
             "mealTypes.mealtype_id": mealId,
             "cuisines.cuisine_id": cuisineId
         }
-    } else if (lcost && hcost) {
+    }
+    else if (lcost && hcost) {
         query = {
             "mealTypes.mealtype_id": mealId,
             $and: [{ cost: { $gt: lcost, $lt: hcost } }]

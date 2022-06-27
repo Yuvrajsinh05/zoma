@@ -82,6 +82,7 @@ class RestDetails extends Component {
     //calling api with async await 
     async componentDidMount(){
         let restId = this.props.location.search.split('=')[1];
+        console.log("restId",restId)
         let response = await axios.get(`${url}/${restId}`)
         console.log(">>>response.data[0].restaurant_id",response.data[0].restaurant_id)
         let menuResponse = await axios.get(`${menuUrl}${response.data[0].restaurant_id}`)

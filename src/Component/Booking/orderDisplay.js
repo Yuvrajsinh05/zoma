@@ -4,6 +4,7 @@ const OrderDisplay = (props) => {
 
     const renderTable = ({orderData}) => {
         if(orderData){
+            console.log("check orderdata", orderData)
             return orderData.map((item) => {
                 return(
                     <tr key={item.id}>

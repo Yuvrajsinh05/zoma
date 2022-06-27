@@ -5,6 +5,7 @@ const ListingDisplay = (props) => {
 
     const renderData = ({listData}) => {
         if(listData){   
+            console.log("check this too" ,listData)
             if(listData.length>0){
                 return listData.map((item) => {
                     return(
