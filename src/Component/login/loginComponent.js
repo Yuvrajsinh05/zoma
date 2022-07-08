@@ -8,8 +8,8 @@ class Login extends Component {
         super(props)
 
         this.state={
-            email:'saloni@gmail.com',
-            password:'12345678',
+            email:'yuvrajsinh73598@gmail.com',
+            password:'123456789',
             message:''
         }
     }

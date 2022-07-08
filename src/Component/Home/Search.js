@@ -16,7 +16,7 @@ class Search extends Component{
     }
 
     renderCity = (data) => {
-        // console.log(">>>>data>>",data)
+        console.log(">>>>data>>",data)
         if(data){
             return data.map((item) => {
                 return(
@@ -29,7 +29,7 @@ class Search extends Component{
     renderRest = (data) => {
         if(data){
             return data.map((item) => {
-                // console.log("data", data)
+                console.log("data", data)
                 return(
             
                     <option key={item.restaurant_id} value={item.restaurant_id}>{item.restaurant_name} | {item.address}</option>

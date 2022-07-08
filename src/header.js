@@ -38,7 +38,7 @@ class Header extends Component {
                     </Link> &nbsp;
                     <div className="btnlogin">
                             <button onClick={this.handleLogout} className="btn btn-danger">
-                            Logout
+                                   Logout
                             </button>
                     </div>
                     </>

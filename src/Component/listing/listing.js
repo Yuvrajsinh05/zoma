@@ -50,4 +50,4 @@ class Listing extends Component {
     }
 }
 
-export default Listing
+export default Listing;
